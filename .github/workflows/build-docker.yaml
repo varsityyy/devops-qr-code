@@ -1,0 +1,16 @@
+name: Build and Publish image to Docker hub
+on:
+  [workflow dispatch]
+
+jobs:
+  publish_images:
+    runs-on:ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: build image
+        run: docker build ./api/ -t vrsty/devops-qr-code-api:latest 
+      - name: push image to docker hub
+        run: |
+          docker push vrsty/devops-qr-code-api:latest 
+          
