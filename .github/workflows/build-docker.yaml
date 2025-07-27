@@ -9,9 +9,11 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
       - name: build image
-        run: docker build ./api/ -t vrsty/devops-qr-code-api:latest 
+        run: docker build ./api/ -t vrsty/devops-qr-code-api:latest
+             docker build ./frontend-nextjs/ -t vrsty/devops-qr-code-frontend:latest
       - name: push image to docker hub
         run: |
           docker login -u vrsty -p ${{ secrets.DOCKER_HUB_TOKEN}}
           docker push vrsty/devops-qr-code-api:latest 
+          docker push vrsty/devops-qr-code-frontend:latest
           
